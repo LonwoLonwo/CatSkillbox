@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CatSkillbox:jar">
+    <output-path>$PROJECT_DIR$/Cat/out</output-path>
+    <root id="archive" name="CatSkillbox.jar">
+      <element id="module-output" name="CatSkillbox" />
+    </root>
+  </artifact>
+</component>
