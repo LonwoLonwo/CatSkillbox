@@ -10,13 +10,14 @@ public class Loader
         Cat goldenEye = new Cat();
         Cat nekoBus = new Cat();
 
-        gingerCatHaveNoSoul.setCatColors(CatColors.GINGER);
-        System.out.println(gingerCatHaveNoSoul.getColor());
-        felisSilvestrisCatus.setCatColors(CatColors.WHITE);
-        black.setCatColors(CatColors.BLACK);
-        dieKatze.setCatColors(CatColors.SPOTTY);
+        gingerCatHaveNoSoul.setColor(CatColor.GINGER);
+        felisSilvestrisCatus.setColor(CatColor.WHITE);
+        black.setColor(CatColor.BLACK);
+        dieKatze.setColor(CatColor.SPOTTY);
         System.out.println(nekoBus.EYES_COUNT);
-        nekoBus.setCatColors(CatColors.RUSSIAN_BLUE);
+        nekoBus.setColor(CatColor.RUSSIAN_BLUE);
+
+
 
         System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
 
@@ -26,6 +27,7 @@ public class Loader
         dieKatze.feed(154.5);
         System.out.println(dieKatze.getStatus());
         System.out.println(dieKatze.getWeight());
+        System.out.println(dieKatze.feedAmount);
 
         System.out.println();
 
@@ -49,9 +51,13 @@ public class Loader
         {
             gingerCatHaveNoSoul.feed(1500.78);
             System.out.println(gingerCatHaveNoSoul.getWeight());
-            if (gingerCatHaveNoSoul.getWeight() >= Cat.MAX_WEIGHT) break;
+            if (!gingerCatHaveNoSoul.isAlive()) break;
         }
         System.out.println(gingerCatHaveNoSoul.getStatus());
+
+        System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
+        gingerCatHaveNoSoul.feed(1.5);
+        System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
 
         System.out.println();
 
@@ -60,16 +66,21 @@ public class Loader
         while (felisSilvestrisCatus.getWeight() < Cat.MAX_WEIGHT)
         {
             felisSilvestrisCatus.meow();
-            if (felisSilvestrisCatus.getWeight() <= Cat.MIN_WEIGHT) break;
+            if (!felisSilvestrisCatus.isAlive()) break;
         }
         System.out.println(felisSilvestrisCatus.getWeight());
         System.out.println(felisSilvestrisCatus.getStatus());
+        System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
+        felisSilvestrisCatus.meow();
+        System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
+
+        System.out.println();
 
         //Врзвращаем массу съеденной еды
-        System.out.println(black.getWeight());
+        System.out.println("Вес до еды: " + black.getWeight());
         black.feed(150.87);
-        System.out.println(black.getWeight());
-        System.out.println("Съедено: " + black.feedAmount());
+        System.out.println("Вес после еды: " + black.getWeight());
+        System.out.println("Съедено: " + black.feedAmount);
 
         System.out.println();
 
@@ -83,9 +94,9 @@ public class Loader
         //Сколько кошек?
         System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
 
-        System.out.println("Чёрный весит: " + black.getWeight() + " " + black.getColor());
+        System.out.println("Чёрный весит: " + black.getWeight());
 
-        System.out.println("Брат-близнец Чёрного весит: " + black.makeTwin().getWeight() + " " + black.getColor());
+        System.out.println("Брат-близнец Чёрного весит: " + black.makeTwin().getWeight());
 
         System.out.println("Сколько кошек в чёрной комнате: " + Cat.getCount());
 

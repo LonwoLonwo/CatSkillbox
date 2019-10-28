@@ -1,4 +1,4 @@
-public enum CatColors {
+public enum CatColor {
     RUSSIAN_BLUE,
     GINGER,
     WHITE,

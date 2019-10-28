@@ -8,9 +8,12 @@ public class Cat
     private double originWeight;
     private double weight;
 
-    public String color;
+    public double feedAmount;
+    public boolean isAlive = true;
 
     private static int count = 0;
+
+    private CatColor color;
 
     public Cat()
     {
@@ -38,45 +41,61 @@ public class Cat
 
     public void meow()
     {
-        weight = weight - 1;
-        System.out.println("Meow");
-        if (weight < MIN_WEIGHT)
-        {
-            count--;
+        if(isAlive) {
+            weight = weight - 1;
+            System.out.println("Meow");
+            if (weight < MIN_WEIGHT) {
+                count--;
+                this.isAlive = false;
+            }
+        }
+        else{
+            System.out.println("Cat is dead. And dead cat have no voice.");
         }
     }
 
-    public void feed(Double amount)
+    public void feed(Double feedAmount)
     {
-        weight = weight + amount;
-        if (weight > MAX_WEIGHT)
-        {
-            count--;
-        }
-    }
+        if(isAlive) {
+            this.feedAmount = feedAmount;
+            weight = weight + feedAmount;
 
-    public Double feedAmount()
-    {
-        Double feedAmount = weight - originWeight;
-        return feedAmount;
+            if (weight > MAX_WEIGHT) {
+                count--;
+                this.isAlive = false;
+            }
+        }
+        else{
+            System.out.println("Cat is dead! Don't feed him!");
+        }
     }
 
     public void drink(Double amount)
     {
-        weight = weight + amount;
-        if (weight > MAX_WEIGHT)
-        {
-            count--;
+        if(isAlive) {
+            weight = weight + amount;
+            if (weight > MAX_WEIGHT) {
+                count--;
+                this.isAlive = false;
+            }
+        }
+        else{
+            System.out.println("Cat is dead! He does not want to drink.");
         }
     }
 
     public void poops()
     {
-        weight = weight - 200 * Math.random();
-        System.out.println("Uffff");
-        if (weight < MIN_WEIGHT)
-        {
-            count--;
+        if(isAlive) {
+            weight = weight - 200 * Math.random();
+            System.out.println("Uffff");
+            if (weight < MIN_WEIGHT) {
+                count--;
+                isAlive = false;
+            }
+        }
+        else{
+            System.out.println("Cat is dead. Deal with it.");
         }
     }
 
@@ -85,29 +104,10 @@ public class Cat
         return weight;
     }
 
-    public void setCatColors(CatColors colors){
-        if(colors.equals(CatColors.GINGER)){
-            this.color = "Рыжий";
-        }
-        else if(colors.equals(CatColors.RUSSIAN_BLUE)){
-            this.color = "Русский голубой";
-        }
-        else if(colors.equals(CatColors.WHITE)){
-            this.color = "Белый";
-        }
-        else if(colors.equals(CatColors.BLACK)){
-            this.color = "Чёрный";
-        }
-        else if(colors.equals(CatColors.SPOTTY)){
-            this.color = "Пятнистый";
-        }
 
+    public void setColor(CatColor color) {
+        this.color = color;
     }
-
-    public String getColor(){
-        return color + " - вот какой у меня окрас.";
-    }
-
 
 
     public String getStatus()
@@ -124,6 +124,13 @@ public class Cat
         else {
             return "Playing";
         }
+    }
+
+    public boolean isAlive(){
+        if(this.getStatus().equals("Dead")){
+            return isAlive = false;
+        }
+        else return isAlive = true;
     }
 
     public static int getCount()
